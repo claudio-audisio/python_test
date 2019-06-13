@@ -9,30 +9,47 @@ if (totParams < 2):
 
 n = int(sys.argv[1])
 
-used = set()
+recamam = dict()
 
 next_goal = 1
+prev_goal = 0
 i = 0
 pos = 0
-used.add(0)
-print("0 -> 0")
+recamam[0] = 0
 
-while 1:
+alldone = False
+
+while alldone == False:
     i = i + 1
-    if (pos - i) < 0 or (pos - i) in used:
+    if (pos - i) < 0 or (pos - i) in recamam:
         pos = pos + i
     else:
         pos = pos - i
     
-    used.add(pos)
+    recamam[pos] = i
     
-    print i,"->",pos
+    if (i % 10000000 == 0):
+        print("passed",int(i/1000000),"million(s) iterations searching", next_goal)
     
     if (pos == next_goal):
-        for j in range(next_goal,n+1):
-            if j not in used:
-                next_goal = j
+
+        print("rec(",next_goal,") ->",recamam[next_goal]) 
+        #for j in range (prev_goal + 1, next_goal + 1):
+            #print("rec(",j,") ->",recamam[j])
+
+        prev_goal = next_goal
+
+        while 1:
+            next_goal = next_goal + 1
+
+            if (next_goal > n):
+                alldone = True
                 break
 
-    if (next_goal == n):
-        break
+            if next_goal not in recamam:
+                #print("next goal:", next_goal)
+                break
+
+            print("rec(",next_goal,") ->",recamam[next_goal])
+
+print("with", i, "iterations")

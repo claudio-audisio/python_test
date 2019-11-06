@@ -1,3 +1,6 @@
+#A005132
+#Recaman's sequence (or Recaman's sequence): a(0) = 0; for n > 0, a(n) = a(n-1) - n if positive and not already in the sequence, otherwise a(n) = a(n-1) + n.
+
 import sys
 import time
 

@@ -10,7 +10,7 @@ n = int(sys.argv[1])
 
 for i in range(2, n+1):
     fact = fact * i
-    #print(i,"! -> ", fact)
+    print(i,"! -> ", fact)
     #time.sleep(0.1)
 
-print(n,"! -> ", fact)
+#print(n,"! -> ", fact)

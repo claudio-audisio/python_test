@@ -55,10 +55,12 @@ def Ackermann(m,n):
             return Ackermann(m-1, Ackermann(m, n-1))
 
 def GetMaxN(m):
-    if (m == 0): return 1049002
-    if (m == 1): return 1049000
-    if (m == 2): return 524300
+    current_max = 4200000
+    if (m == 0): return current_max * 2 + 2
+    if (m == 1): return current_max * 2 + 1
+    if (m == 2): return current_max
     if (m == 3): return 20
+    if (m == 4): return 1
     return 10
 
 m = 0
@@ -76,14 +78,17 @@ while True:
             stop = 1
         res = Ackermann(m,n)
         ack_dict.set(m, n, res)
-        if (n > 0):
-            print("A(",m,",",n,") --> ",res," with ",counter.get()," calls (diff ",counter.get() - prev," - growth ratio ",counter.get() / prev,")")
-        else:
-            print("A(",m,",",n,") --> ",res," with ",counter.get()," calls (diff ",counter.get() - prev,")")
+
+        if (m > 2 or n == max_n or counter.get() > 1) :
+            #if (n > 0):
+            #    print("A(",m,",",n,") --> ",res," with ",counter.get()," calls (diff ",counter.get() - prev," - growth ratio ",counter.get() / prev,")")
+            #else:
+                print("A(",m,",",n,") --> ",res," with ",counter.get()," calls (diff ",counter.get() - prev,")")
+
         prev = counter.get()
 
-        if (prev > 1):
-            time.sleep(10)
+        #if (prev > 1):
+        #    time.sleep(10)
 
         counter.reset()
         n = n + 1
